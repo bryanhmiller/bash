@@ -18,10 +18,15 @@ elif [[ ($BASE_FILE == $BASE_FILE_TYPE) || ($COMPARED_FILE == $COMPARED_FILE_TYP
     exit 1
 fi
 
+# Identify command operations and filehashing
+
+magick identify -verbose $BASE_FILE > a.txt
+cat a.txt | head -10 
+
+md5=($(md5sum $BASE_FILE))
+echo Filehash for $BASE_FILE is $md5
 
 echo $BASE_FILE is BASE_FILE, $COMPARED_FILE is COMPARED_FILE
-
-# Extract file type and get length 
 
 echo -e Length of BASE_FILE is ${#BASE_FILE}, length of COMPARED_FILE is ${#COMPARED_FILE} 
 
